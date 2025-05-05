@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert, ScrollView, StyleSheet } from 'react-native';
+import { 
+  View, 
+  Text, 
+  TextInput, 
+  TouchableOpacity, 
+  Alert, 
+  ScrollView, 
+  StyleSheet, 
+  ActivityIndicator 
+} from 'react-native';
 import { RegistroStyles } from './RegistroStyles';
 import { Picker } from '@react-native-picker/picker';
 import { useNavigation } from '@react-navigation/native';
@@ -7,6 +16,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useCitas } from '../../context/CitasContext';
+import axios from 'axios';
 
 interface MascotaFormData {
   nombre: string;
@@ -40,6 +50,7 @@ const RegistroScreen = () => {
   });
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const navigation = useNavigation<any>();
   const { agregarMascota } = useCitas();
 
@@ -51,15 +62,52 @@ const RegistroScreen = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!formData.nombre || !formData.especie || !formData.cedulaDuenio) {
       Alert.alert('Error', 'Por favor complete los campos requeridos');
       return;
     }
 
-    agregarMascota(formData);
-    Alert.alert('Registro exitoso', 'Mascota registrada correctamente');
-    navigation.navigate('AgendarCita');
+    // Preparar los datos según el formato esperado por la API
+    const dataToSend = {
+      nombre: formData.nombre,
+      especie: formData.especie,
+      edad: parseInt(formData.edad) || 0,
+      raza: formData.raza,
+      sexo: formData.sexo,
+      peso: parseFloat(formData.peso) || 0,
+      dueno: {
+        cedula: formData.cedulaDuenio,
+        nombre: formData.dueño,
+        apellido: formData.apellidoDuenio,
+        telefono: formData.telefonoDuenio,
+        correo: formData.correoDuenio,
+        direccion: formData.direccionDuenio
+      }
+    };
+
+    try {
+      setIsLoading(true);
+      const response = await axios.post('https://vetjjg.byronrm.com/animales', dataToSend);
+      
+      if (response.status === 201) {
+        Alert.alert('Éxito', 'Mascota registrada correctamente');
+        // Opcional: agregar también al contexto local
+        agregarMascota(formData);
+        navigation.navigate('AgendarCita');
+      }
+    } catch (error) {
+      console.error('Error al registrar mascota:', error);
+      
+      let errorMessage = 'Ocurrió un error al registrar la mascota';
+      if (axios.isAxiosError(error)) {
+        errorMessage = error.response?.data?.message || errorMessage;
+      }
+      
+      Alert.alert('Error', errorMessage);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -218,11 +266,18 @@ const RegistroScreen = () => {
           </View>
 
           <TouchableOpacity 
-            style={RegistroStyles.button} 
+            style={[RegistroStyles.button, isLoading && { opacity: 0.7 }]} 
             onPress={handleSubmit}
+            disabled={isLoading}
           >
-            <MaterialIcons name="save" size={20} color="#fff" />
-            <Text style={RegistroStyles.buttonText}>Registrar Mascota</Text>
+            {isLoading ? (
+              <ActivityIndicator color="#fff" />
+            ) : (
+              <>
+                <MaterialIcons name="save" size={20} color="#fff" />
+                <Text style={RegistroStyles.buttonText}>Registrar Mascota</Text>
+              </>
+            )}
           </TouchableOpacity>
         </ScrollView>
       </View>
