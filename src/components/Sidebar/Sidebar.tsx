@@ -45,18 +45,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
       icon: 'pets',
       screen: 'Registro',
     },
-    {
-      id: 'Buscar',
-      title: 'Buscar Dueño',
-      icon: 'pets',
-      screen: 'Buscar',
-    },
-    {
-      id: 'historial-citas',
-      title: 'Historial Citas',
+     {
+      id: 'ver-mascota',
+      title: 'Ver Mascota',
       icon: 'history',
-      screen: 'HistorialCitas',
+      screen: 'VerMascota',
     },
+      {
+    id: 'consulta-medica',
+    title: 'Consulta Médica',
+    icon: 'medical-services',
+    screen: 'Consultamedica',
+  },
+    
+    
   ];
 
   return (

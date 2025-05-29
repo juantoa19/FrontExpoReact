@@ -3,21 +3,18 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/Login/Login';
 import HomeScreen from '../screens/Home/Home';
-import AgendarCita from '../screens/AgendarCita/AgendarCita';
 import RegistroScreen from '../screens/Registro/Registro';
-import HistorialCitasScreen from '../screens/HistorialCita/Historial';
-import BuscarDuenoScreen from '../screens/BuscarDueno/BuscarDueno'; // 👈 Importación añadida
-import Buscar from '../screens/BuscarDueno/BuscarDueno';
+import VerMascota from '../screens/VerMascota/VerMascota';
+import ConsultamedicaScreen from '../screens/ConsultaMedica/Consultamedica';
 
 //Definicion de las rutas disponibles 
 export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
   Dashboard: undefined;
-  AgendarCita: undefined;
-  HistorialCitas: undefined;
+  VerMascota: undefined;
   Registro: undefined;
-  Buscar: undefined; // 👈 Tipo añadido
+  Consultamedica: undefined;
 };
 
 
@@ -51,18 +48,13 @@ export const Navigator = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="AgendarCita"
-          component={AgendarCita}
+          name="VerMascota"
+          component={VerMascota}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="HistorialCitas"
-          component={HistorialCitasScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen 
-          name="Buscar"
-          component={Buscar}
+          name="Consultamedica"
+          component={ConsultamedicaScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
