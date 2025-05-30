@@ -104,6 +104,28 @@ export const HistorialStyles = StyleSheet.create({
     color: '#555',
     marginTop: 4,
   },
-  
 
-})
+  // Agrega estos nuevos estilos:
+  deleteButton: {
+    backgroundColor: '#dc3545',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 10,
+  },
+  deleteButtonDisabled: {
+    backgroundColor: '#a0a0a0',
+  },
+  deleteButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  detailRowActions: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+});
+  

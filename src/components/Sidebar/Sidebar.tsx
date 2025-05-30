@@ -1,14 +1,14 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-} from 'react-native-reanimated';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigation/Navigator';
+} from "react-native-reanimated";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../navigation/Navigator";
 
 type SidebarProps = {
   isVisible: boolean;
@@ -16,7 +16,8 @@ type SidebarProps = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const translateX = useSharedValue(-300);
 
   const sidebarStyle = useAnimatedStyle(() => ({
@@ -34,31 +35,35 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
     screen: keyof RootStackParamList;
   }[] = [
     {
-      id: 'dashboard',
-      title: 'Dashboard',
-      icon: 'dashboard',
-      screen: 'Home',
+      id: "dashboard",
+      title: "Dashboard",
+      icon: "dashboard",
+      screen: "Home",
     },
     {
-      id: 'registro',
-      title: 'Registro Citas',
-      icon: 'pets',
-      screen: 'Registro',
+      id: "registro",
+      title: "Registro Citas",
+      icon: "pets",
+      screen: "Registro",
     },
-     {
-      id: 'ver-mascota',
-      title: 'Ver Mascota',
-      icon: 'history',
-      screen: 'VerMascota',
+    {
+      id: "ver-mascota",
+      title: "Ver Mascota",
+      icon: "history",
+      screen: "VerMascota",
     },
-      {
-    id: 'consulta-medica',
-    title: 'Consulta Médica',
-    icon: 'medical-services',
-    screen: 'Consultamedica',
-  },
-    
-    
+    {
+      id: "consulta-medica",
+      title: "Consulta Médica",
+      icon: "medical-services",
+      screen: "Consultamedica",
+    },
+    {
+      id: "historial-consulta",
+      title: "Historial Consulta",
+      icon: "medical-services",
+      screen: "HistorialConsulta",
+    },
   ];
 
   return (
@@ -79,7 +84,12 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
             }}
             style={styles.menuItem}
           >
-            <Icon name={item.icon} size={24} color="white" style={styles.menuIcon} />
+            <Icon
+              name={item.icon}
+              size={24}
+              color="white"
+              style={styles.menuIcon}
+            />
             <Text style={styles.menuText}>{item.title}</Text>
           </TouchableOpacity>
         ))}
@@ -90,29 +100,29 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     bottom: 0,
     width: 280,
-    backgroundColor: '#2c3e50',
+    backgroundColor: "#2c3e50",
     zIndex: 1000,
     paddingTop: 60,
     paddingHorizontal: 20,
     elevation: 50,
   },
   header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     paddingBottom: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#34495e',
+    borderBottomColor: "#34495e",
   },
   title: {
-    color: 'white',
+    color: "white",
     fontSize: 22,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   closeButton: {
     padding: 5,
@@ -121,18 +131,18 @@ const styles = StyleSheet.create({
     paddingTop: 20,
   },
   menuItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     paddingVertical: 15,
     paddingHorizontal: 10,
     borderBottomWidth: 1,
-    borderBottomColor: 'rgba(255,255,255,0.1)',
+    borderBottomColor: "rgba(255,255,255,0.1)",
   },
   menuIcon: {
     marginRight: 15,
   },
   menuText: {
-    color: 'white',
+    color: "white",
     fontSize: 16,
   },
 });

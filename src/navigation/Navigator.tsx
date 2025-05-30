@@ -6,6 +6,7 @@ import HomeScreen from '../screens/Home/Home';
 import RegistroScreen from '../screens/Registro/Registro';
 import VerMascota from '../screens/VerMascota/VerMascota';
 import ConsultamedicaScreen from '../screens/ConsultaMedica/Consultamedica';
+import HistorialConsultaScreen from '../screens/HistorialConsulta/Historial';
 
 //Definicion de las rutas disponibles 
 export type RootStackParamList = {
@@ -15,6 +16,7 @@ export type RootStackParamList = {
   VerMascota: undefined;
   Registro: undefined;
   Consultamedica: undefined;
+  HistorialConsulta: undefined;
 };
 
 
@@ -55,6 +57,11 @@ export const Navigator = () => {
         <Stack.Screen
           name="Consultamedica"
           component={ConsultamedicaScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="HistorialConsulta"
+          component={HistorialConsultaScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
