@@ -82,6 +82,30 @@ const VerMascotaStyle = StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+   actionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    marginTop: 12,
+    gap: 8,
+  },
+  actionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 4,
+  },
+  editButton: {
+    backgroundColor: '#3498db',
+  },
+  deleteButton: {
+    backgroundColor: '#e74c3c',
+  },
+  actionButtonText: {
+    color: '#fff',
+    marginLeft: 6,
+    fontSize: 14,
+  },
 });
 
 export default VerMascotaStyle;

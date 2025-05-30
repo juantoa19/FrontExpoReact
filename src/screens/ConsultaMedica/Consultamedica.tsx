@@ -3,9 +3,6 @@ import { View, Text, ScrollView, TextInput, TouchableOpacity, Alert, StyleSheet 
 import { ConsultamedicaStyles } from './ConsultamedicaStyles';
 import Sidebar from '@/src/components/Sidebar/Sidebar';
 import Navbar from '@/src/components/Navbar/Navbar';
-import axios from 'axios';
-import DateTimePicker from '@react-native-community/datetimepicker';
-import { Picker } from '@react-native-picker/picker';
 
 const ConsultamedicaScreen = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

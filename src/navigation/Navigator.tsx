@@ -1,4 +1,4 @@
-import { NavigationContainer } from '@react-navigation/native'; //permite moverte entre pantallas.
+import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import LoginScreen from '../screens/Login/Login';
@@ -6,9 +6,8 @@ import HomeScreen from '../screens/Home/Home';
 import RegistroScreen from '../screens/Registro/Registro';
 import VerMascota from '../screens/VerMascota/VerMascota';
 import ConsultamedicaScreen from '../screens/ConsultaMedica/Consultamedica';
-import HistorialConsultaScreen from '../screens/HistorialConsulta/Historial';
 
-//Definicion de las rutas disponibles 
+// Definición de las rutas disponibles 
 export type RootStackParamList = {
   Login: undefined;
   Home: undefined;
@@ -16,7 +15,6 @@ export type RootStackParamList = {
   VerMascota: undefined;
   Registro: undefined;
   Consultamedica: undefined;
-  HistorialConsulta: undefined;
 };
 
 
@@ -57,11 +55,6 @@ export const Navigator = () => {
         <Stack.Screen
           name="Consultamedica"
           component={ConsultamedicaScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="HistorialConsulta"
-          component={HistorialConsultaScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

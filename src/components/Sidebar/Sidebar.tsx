@@ -35,35 +35,31 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
     screen: keyof RootStackParamList;
   }[] = [
     {
-      id: "dashboard",
-      title: "Dashboard",
-      icon: "dashboard",
-      screen: "Home",
+      id: 'dashboard',
+      title: 'Dashboard',
+      icon: 'dashboard',
+      screen: 'Home',
     },
     {
-      id: "registro",
-      title: "Registro Citas",
-      icon: "pets",
-      screen: "Registro",
+      id: 'registro',
+      title: 'Registro Citas',
+      icon: 'pets',
+      screen: 'Registro',
     },
-    {
-      id: "ver-mascota",
-      title: "Ver Mascota",
-      icon: "history",
-      screen: "VerMascota",
+     {
+      id: 'ver-mascota',
+      title: 'Ver Mascota',
+      icon: 'history',
+      screen: 'VerMascota',
     },
-    {
-      id: "consulta-medica",
-      title: "Consulta Médica",
-      icon: "medical-services",
-      screen: "Consultamedica",
-    },
-    {
-      id: "historial-consulta",
-      title: "Historial Consulta",
-      icon: "medical-services",
-      screen: "HistorialConsulta",
-    },
+      {
+    id: 'consulta-medica',
+    title: 'Consulta Médica',
+    icon: 'medical-services',
+    screen: 'Consultamedica',
+  },
+    
+    
   ];
 
   return (
