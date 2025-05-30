@@ -105,25 +105,6 @@ const VerMascota = () => {
         </View>
       </View>
 
-      <View style={VerMascotaStyle.ownerSection}>
-        <Text style={VerMascotaStyle.subtitle}>Información del Dueño</Text>
-        <Text style={VerMascotaStyle.text}>
-          <Text style={{ fontWeight: '600' }}>Nombre:</Text> {item.dueno.nombre} {item.dueno.apellido}
-        </Text>
-        <Text style={VerMascotaStyle.text}>
-          <Text style={{ fontWeight: '600' }}>Cédula:</Text> {item.dueno.cedula}
-        </Text>
-        <Text style={VerMascotaStyle.text}>
-          <Text style={{ fontWeight: '600' }}>Teléfono:</Text> {item.dueno.telefono}
-        </Text>
-        <Text style={VerMascotaStyle.text}>
-          <Text style={{ fontWeight: '600' }}>Correo:</Text> {item.dueno.correo}
-        </Text>
-        <Text style={VerMascotaStyle.text}>
-          <Text style={{ fontWeight: '600' }}>Dirección:</Text> {item.dueno.direccion}
-        </Text>
-      </View>
-
       <View style={VerMascotaStyle.actionsContainer}>
         <TouchableOpacity 
           style={[VerMascotaStyle.actionButton, VerMascotaStyle.editButton]}

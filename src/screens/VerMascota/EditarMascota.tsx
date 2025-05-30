@@ -35,12 +35,6 @@ const EditarMascota = () => {
     sexo: mascota.sexo,
     peso: mascota.peso.toString(),
     edad: mascota.edad.toString(),
-    dueño: mascota.dueno.nombre,
-    apellidoDuenio: mascota.dueno.apellido,
-    telefonoDuenio: mascota.dueno.telefono,
-    correoDuenio: mascota.dueno.correo,
-    direccionDuenio: mascota.dueno.direccion,
-    cedulaDuenio: mascota.dueno.cedula,
   });
 
   const handleInputChange = (name: keyof typeof formData, value: string) => {
@@ -49,7 +43,7 @@ const EditarMascota = () => {
   };
 
   const handleSubmit = async () => {
-    if (!formData.nombre || !formData.especie || !formData.cedulaDuenio) {
+    if (!formData.nombre || !formData.especie) {
       showMessage({
         message: "Campos requeridos",
         description: "Por favor complete los campos obligatorios",
@@ -65,14 +59,6 @@ const EditarMascota = () => {
       raza: formData.raza,
       sexo: formData.sexo,
       peso: parseFloat(formData.peso) || 0,
-      dueno: {
-        cedula: formData.cedulaDuenio,
-        nombre: formData.dueño,
-        apellido: formData.apellidoDuenio,
-        telefono: formData.telefonoDuenio,
-        correo: formData.correoDuenio,
-        direccion: formData.direccionDuenio,
-      },
     };
 
     try {
@@ -193,71 +179,6 @@ const EditarMascota = () => {
             />
           </View>
 
-          {/* Owner Information Section */}
-          <Text style={styles.sectionTitle}>Información del Dueño</Text>
-
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="person" size={20} color="#555" />
-            <TextInput
-              style={styles.input}
-              placeholder="Nombre del dueño *"
-              value={formData.dueño}
-              onChangeText={(value) => handleInputChange('dueño', value)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="person" size={20} color="#555" />
-            <TextInput
-              style={styles.input}
-              placeholder="Apellido del dueño"
-              value={formData.apellidoDuenio}
-              onChangeText={(value) => handleInputChange('apellidoDuenio', value)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="credit-card" size={20} color="#555" />
-            <TextInput
-              style={styles.input}
-              placeholder="Cédula del dueño *"
-              keyboardType="numeric"
-              value={formData.cedulaDuenio}
-              onChangeText={(value) => handleInputChange('cedulaDuenio', value)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="phone" size={20} color="#555" />
-            <TextInput
-              style={styles.input}
-              placeholder="Teléfono"
-              keyboardType="phone-pad"
-              value={formData.telefonoDuenio}
-              onChangeText={(value) => handleInputChange('telefonoDuenio', value)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="email" size={20} color="#555" />
-            <TextInput
-              style={styles.input}
-              placeholder="Correo electrónico"
-              keyboardType="email-address"
-              value={formData.correoDuenio}
-              onChangeText={(value) => handleInputChange('correoDuenio', value)}
-            />
-          </View>
-
-          <View style={styles.inputContainer}>
-            <MaterialIcons name="home" size={20} color="#555" />
-            <TextInput
-              style={styles.input}
-              placeholder="Dirección"
-              value={formData.direccionDuenio}
-              onChangeText={(value) => handleInputChange('direccionDuenio', value)}
-            />
-          </View>
 
           <TouchableOpacity
             style={[styles.button, isLoading && { opacity: 0.7 }]}
