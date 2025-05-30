@@ -42,53 +42,54 @@ const EditarMascota = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async () => {
-    if (!formData.nombre || !formData.especie) {
-      showMessage({
-        message: "Campos requeridos",
-        description: "Por favor complete los campos obligatorios",
-        type: "danger",
-      });
-      return;
-    }
+const handleSubmit = async () => {
+  if (!formData.nombre || !formData.especie) {
+    showMessage({
+      message: "Campos requeridos",
+      description: "Por favor complete los campos obligatorios",
+      type: "danger",
+    });
+    return;
+  }
 
-    const dataToSend = {
-      nombre: formData.nombre,
-      especie: formData.especie,
-      edad: parseInt(formData.edad) || 0,
-      raza: formData.raza,
-      sexo: formData.sexo,
-      peso: parseFloat(formData.peso) || 0,
-    };
-
-    try {
-      setIsLoading(true);
-      const response = await axios.put(`https://vetjjg.byronrm.com/animales/${mascota.id}`, dataToSend);
-
-      if (response.status === 200) {
-        showMessage({
-          message: 'Mascota actualizada',
-          description: 'Los cambios se han guardado correctamente',
-          type: 'success',
-        });
-        navigation.goBack();
-      }
-    } catch (error) {
-      console.error('Error al actualizar mascota:', error);
-      let errorMessage = 'Ocurrió un error al actualizar la mascota';
-      if (axios.isAxiosError(error)) {
-        errorMessage = error.response?.data?.message || errorMessage;
-      }
-
-      showMessage({
-        message: 'Error',
-        description: errorMessage,
-        type: 'danger',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+  const dataToSend = {
+    nombre: formData.nombre,
+    especie: formData.especie,
+    edad: parseInt(formData.edad) || 0,
+    raza: formData.raza,
+    sexo: formData.sexo,
+    peso: parseFloat(formData.peso) || 0,
+    dueno: mascota.dueno // Mantenemos el dueño original
   };
+
+  try {
+    setIsLoading(true);
+    const response = await axios.put(`https://vetjjg.byronrm.com/animales/${mascota.id}`, dataToSend);
+
+    if (response.status === 200) {
+      showMessage({
+        message: 'Mascota actualizada',
+        description: 'Los cambios se han guardado correctamente',
+        type: 'success',
+      });
+      navigation.goBack();
+    }
+  } catch (error) {
+    console.error('Error al actualizar mascota:', error);
+    let errorMessage = 'Ocurrió un error al actualizar la mascota';
+    if (axios.isAxiosError(error)) {
+      errorMessage = error.response?.data?.message || errorMessage;
+    }
+
+    showMessage({
+      message: 'Error',
+      description: errorMessage,
+      type: 'danger',
+    });
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   return (
     <View style={{ flex: 1 }}>
@@ -180,6 +181,44 @@ const EditarMascota = () => {
           </View>
 
 
+          {/* Owner Information Section - Solo lectura */}
+          <Text style={styles.sectionTitle}>Información del Dueño</Text>
+
+          <View style={styles.readOnlyContainer}>
+            <MaterialIcons name="person" size={20} color="#555" />
+            <Text style={styles.readOnlyText}>
+              {mascota.dueno?.nombre} {mascota.dueno?.apellido}
+            </Text>
+          </View>
+
+          <View style={styles.readOnlyContainer}>
+            <MaterialIcons name="credit-card" size={20} color="#555" />
+            <Text style={styles.readOnlyText}>
+              {mascota.dueno?.cedula}
+            </Text>
+          </View>
+
+          <View style={styles.readOnlyContainer}>
+            <MaterialIcons name="phone" size={20} color="#555" />
+            <Text style={styles.readOnlyText}>
+              {mascota.dueno?.telefono}
+            </Text>
+          </View>
+
+          <View style={styles.readOnlyContainer}>
+            <MaterialIcons name="email" size={20} color="#555" />
+            <Text style={styles.readOnlyText}>
+              {mascota.dueno?.correo}
+            </Text>
+          </View>
+
+          <View style={styles.readOnlyContainer}>
+            <MaterialIcons name="home" size={20} color="#555" />
+            <Text style={styles.readOnlyText}>
+              {mascota.dueno?.direccion}
+            </Text>
+          </View>
+
           <TouchableOpacity
             style={[styles.button, isLoading && { opacity: 0.7 }]}
             onPress={handleSubmit}
@@ -249,6 +288,22 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     marginLeft: 8,
+  },
+  readOnlyContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#f5f5f5',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginBottom: 12,
+  },
+  readOnlyText: {
+    flex: 1,
+    marginLeft: 10,
+    fontSize: 16,
+    color: '#555',
+    paddingVertical: 8,
   },
 });
 

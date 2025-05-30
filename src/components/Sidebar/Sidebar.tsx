@@ -42,7 +42,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
     },
     {
       id: "registro",
-      title: "Registro Citas",
+      title: "Registro Mascota",
       icon: "pets",
       screen: "Registro",
     },

@@ -296,12 +296,6 @@ const HistorialConsultaScreen = () => {
                         )}
                       </TouchableOpacity>
                     </View>
-
-                    {consulta.requiereSeguimiento && (
-                      <TouchableOpacity style={HistorialStyles.followUpButton}>
-                        <Text style={HistorialStyles.followUpButtonText}>Programar seguimiento</Text>
-                      </TouchableOpacity>
-                    )}
                   </Animated.View>
                 )}
               </Animated.View>
