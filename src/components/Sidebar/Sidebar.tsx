@@ -27,39 +27,38 @@ const Sidebar: React.FC<SidebarProps> = ({ isVisible, onClose }) => {
     translateX.value = withTiming(isVisible ? 0 : -300, { duration: 300 });
   }, [isVisible]);
 
-  const menuItems: {
-    id: string;
-    title: string;
-    icon: string;
-    screen: keyof RootStackParamList;
-  }[] = [
-    {
-      id: 'dashboard',
-      title: 'Dashboard',
-      icon: 'dashboard',
-      screen: 'Home',
-    },
-    {
-      id: 'registro',
-      title: 'Registro Citas',
-      icon: 'pets',
-      screen: 'Registro',
-    },
-     {
-      id: 'ver-mascota',
-      title: 'Ver Mascota',
-      icon: 'history',
-      screen: 'VerMascota',
-    },
-      {
+ // Cambia la definición de menuItems a:
+const menuItems: {
+  id: string;
+  title: string;
+  icon: string;
+  screen: Exclude<keyof RootStackParamList, 'EditarMascota'>;
+}[] = [
+  {
+    id: 'dashboard',
+    title: 'Dashboard',
+    icon: 'dashboard',
+    screen: 'Home',
+  },
+  {
+    id: 'registro',
+    title: 'Registro Citas',
+    icon: 'pets',
+    screen: 'Registro',
+  },
+  {
+    id: 'ver-mascota',
+    title: 'Ver Mascota',
+    icon: 'history',
+    screen: 'VerMascota',
+  },
+  {
     id: 'consulta-medica',
     title: 'Consulta Médica',
     icon: 'medical-services',
     screen: 'Consultamedica',
   },
-    
-    
-  ];
+];
 
   return (
     <Animated.View style={[styles.container, sidebarStyle]}>

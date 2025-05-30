@@ -3,6 +3,8 @@ import { View, Text, ScrollView } from 'react-native';
 import { ConsultamedicaStyles } from './ConsultamedicaStyles';
 import Sidebar from '@/src/components/Sidebar/Sidebar';
 import Navbar from '@/src/components/Navbar/Navbar';
+import Toast from 'react-native-toast-message'; // 🔽 Agrega esto arriba
+
 
 const ConsultamedicaScreen = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
